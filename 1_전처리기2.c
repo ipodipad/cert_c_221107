@@ -1,8 +1,8 @@
 // 1_전처리기2.c
+#if 0
 #include <stdio.h>
 
 int dbl(int x) { return x + x; }
-
 /* 잘못된 코드 */
 // #define DBL(x) (x) + (x)
 
@@ -20,5 +20,44 @@ int main(void)
   int result2 = DBL(x + x) * DBL(2);
   printf("result2: %d\n", result2);
 
+  return 0;
+}
+#endif
+
+#include <stdio.h>
+
+// 매크로 상수를 사용할 때도 괄호로 감싸 주는 것이 좋습니다.
+/* 잘못된 코드 */
+#if 0
+#define INFO -1
+#define WARN -2
+#define ERR -3
+#endif
+
+// 해결 방법: 매크로 치환 영역은 괄호로 감싸주어야 합니다.
+#define INFO (-1)
+#define WARN (-2)
+#define ERR (-3)
+
+void log_print(int level, const char *message)
+{
+  // if (level INFO) /* Compile Error */
+  if (level == INFO)
+  {
+    printf("[INFO] %s\n", message);
+  }
+  else if (level == WARN)
+  {
+    printf("[WARN] %s\n", message);
+  }
+  else
+  {
+    printf("[ERROR] %s\n", message);
+  }
+}
+
+int main(void)
+{
+  log_print(ERR, "Service error!");
   return 0;
 }
