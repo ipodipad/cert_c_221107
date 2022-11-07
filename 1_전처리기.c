@@ -16,7 +16,14 @@
 int square(int x) { return x * x; }
 
 // 4. 함수 호출 오버헤드를 제거하기 위해서, 매크로 함수를 사용합니다.
-#define SQUARE(x) x *x
+//  => 이름은 대문자로 제공해야 합니다.
+/* 잘못된 코드 */
+// #define SQUARE(x) x * x
+
+// 5. 매크로 함수를 작성할 때, 반드시 매개 변수에 괄호를 사용해야 합니다.
+//  => 우선순위에서 문제가 발생할 수 있습니다.
+
+#define SQUARE(x) (x) * (x)
 
 int main(void)
 {
@@ -27,9 +34,16 @@ int main(void)
   int result2 = square(x);
   int result3 = SQUARE(x);
 
+  int result4 = square(x + x);
+  int result5 = SQUARE(x + x);
+  /*            x + x * x + x; */
+
   printf("result1: %d\n", result1);
   printf("result2: %d\n", result2);
   printf("result3: %d\n", result3);
+
+  printf("result4: %d\n", result4);
+  printf("result5: %d\n", result5);
 
   return 0;
 }
