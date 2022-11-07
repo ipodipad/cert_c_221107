@@ -3,7 +3,11 @@
 
 int dbl(int x) { return x + x; }
 
-#define DBL(x) (x) + (x)
+/* 잘못된 코드 */
+// #define DBL(x) (x) + (x)
+
+// 매크로로 치환되는 영역은 반드시 괄호로 감싸야 합니다.
+#define DBL(x) ((x) + (x))
 
 int main(void)
 {
