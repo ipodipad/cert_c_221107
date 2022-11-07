@@ -3,9 +3,9 @@
 #if 0
 #include <stdio.h>
 
-int operations = 0;
-int calls_to_f = 0;
-int calls_to_g = 0;
+int operations = 0; /* 전체 함수 호출 횟수 */
+int calls_to_f = 0; /* F()를 통해 호출되는 함수 횟수 */
+int calls_to_g = 0; /* G()를 통해 호출되는 함수 횟수 */
 
 #define F(x) (++operations, ++calls_to_f, 2 * (x))
 #define G(x) (++operations, ++calls_to_g, (x) + 1)

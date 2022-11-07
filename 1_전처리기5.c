@@ -17,9 +17,9 @@ int main(void)
 {
   int cnt = 10; /* 지역 변수 */
 
-  CALL_FUNC(print_cnt);
-  CALL_FUNC(print_cnt);
-  CALL_FUNC(print_cnt);
+  CALL_FUNC(print_cnt); // (++cnt, print_cnt())
+  CALL_FUNC(print_cnt); // (++cnt, print_cnt())
+  CALL_FUNC(print_cnt); // (++cnt, print_cnt())
 
   return 0;
 }

@@ -5,8 +5,8 @@
 // 1. C 프로그램이 빌드되는 과정
 //  => 전처리기(preprocessor) => 컴파일(Compile) => 링크(Link) => a.exe / a.out
 //     #define / #include     단위: 파일          a.o + b.o
-//     #if / #ifdef ..        a.c => a.o
-//       "텍스트 처리"           b.c => b.o
+//     #if / #ifdef ..       a.c => a.o / a.obj
+//       "텍스트 처리"          b.c => b.o / b.obj
 
 // 2. godbolt.org
 #define PI 3.14

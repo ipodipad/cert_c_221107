@@ -26,6 +26,7 @@ int main(void)
   /* a의 값은 무엇일까요???/ */
   ++a;
   printf("%d\n", a);
+  printf("%s\n", "??< ??> ??=");
 
   return 0;
 }

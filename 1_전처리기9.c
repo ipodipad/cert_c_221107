@@ -27,7 +27,7 @@ int main(void)
   int x1[DIV2(100)];
   // 배열의 크기는 컴파일 타임에 결정되어야 합니다.
 
-  int x2[div2(100)]; /* Compile Error */
+  // int x2[div2(100)]; /* Compile Error */
 
   return 0;
 }

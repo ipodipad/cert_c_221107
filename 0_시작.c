@@ -26,10 +26,10 @@
 
 // 4. 가이드라인
 //   - OWASP: Open Web Application Security Project
-//   -  CERT: Computer Emergency Response Team => C11
-//   -   CWE: Common Weakness Enumeration
+//   -  CERT: Computer Emergency Response Team => C11 - *
 //   - MISRA: Motor Industry Software Reliablilty Association
-//          => MISRA:2012, C99
+//          => MISRA:2012, C99 - *
+//   -   CWE: Common Weakness Enumeration
 
 // 5. C 언어 장점
 //   - C 컴파일러는 많은 프로세서에서 쉽게 사용할 수 있습니다.

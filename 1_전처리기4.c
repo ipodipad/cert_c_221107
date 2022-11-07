@@ -77,6 +77,7 @@ int main(void)
 // 핵심: 인라인 기능과 매크로 함수가 교체될 수 있다면, 매크로 함수보다
 //      선호되어야 합니다.
 
+#if 1
 static inline int square(int x) { return x * x; }
 static inline int abs(int x) { return x > 0 ? x : -x; }
 
@@ -91,16 +92,12 @@ int main(void)
           mov     eax, DWORD PTR x$[rsp]
           imul    eax, DWORD PTR x$[rsp]
           mov     edx, eax
-          lea     rcx, OFFSET FLAT:$SG6987
-          call    printf
   */
   printf("%d\n", SQR(x));
   /*
           mov     eax, DWORD PTR x$[rsp]
           imul    eax, DWORD PTR x$[rsp]
           mov     edx, eax
-          lea     rcx, OFFSET FLAT:$SG6988
-          call    printf
   */
 
   int a = -10;
@@ -109,3 +106,4 @@ int main(void)
 
   return 0;
 }
+#endif

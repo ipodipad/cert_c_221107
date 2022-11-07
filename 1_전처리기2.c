@@ -18,6 +18,8 @@ int main(void)
   printf("result1: %d\n", result1);
 
   int result2 = DBL(x + x) * DBL(2);
+  //             (x+x) + (x+x) * (2) + (2)
+  //             ((x+x) + (x+x)) * ((2) + (2))
   printf("result2: %d\n", result2);
 
   return 0;
@@ -44,17 +46,20 @@ int main(void)
 // 해결 방법: 열거 타입 상수를 이용하면 됩니다.
 //  1) 텍스트 치환(전처리기)으로 인한 오류를 방지할 수 있습니다.
 //  2) 전처리 이후에도 심볼 정보만 유지됩니다.
+#if 1
 enum
 {
   INFO = -1,
   WARN = -2,
   ERR = -3
 };
+#endif
 // 한계: 정수 타입에 대해서만 사용할 수 있습니다.
 
 void log_print(int level, const char *message)
 {
   // if (level INFO) /* Compile Error */
+
   if (level == INFO)
   {
     printf("[INFO] %s\n", message);

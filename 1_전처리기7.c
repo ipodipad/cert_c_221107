@@ -1,6 +1,18 @@
 // 1_전처리기7.c
 
-// 매크로 함수를 인라인 함수로 대체할 수 있다면, 인라인 함수가 선호되어야 한다.
+// => 매크로 함수를 인라인 함수로 대체할 수 있다면, 인라인 함수가 선호되어야 한다.
+//   - 매크로 함수를 인라인 함수로 대체할 수 없는 경우가 있습니다.
+
+// 예외 1. 매크로 함수를 사용해서, 토큰을 연결하거나, 문자열 변경 기능을 사용할 때
+#if 0
+#include <stdio.h>
+
+enum Color
+{
+  Color_Red,
+  Color_Blue,
+  Color_Green
+};
 
 #if 0
 struct color
@@ -14,17 +26,6 @@ struct color
 };
 #endif
 
-// 예외 1. 매크로 함수를 사용해서, 토큰을 연결하거나, 문자열 변경 기능을 사용할 때
-#if 0
-#include <stdio.h>
-
-enum Color
-{
-  Color_Red,
-  Color_Blue,
-  Color_Green
-};
-
 #define COLOR(color)      \
   {                       \
     Color_##color, #color \
@@ -35,7 +36,7 @@ struct color
   enum Color color;
   const char *name;
 } colors[] = {
-    COLOR(Red),
+    COLOR(Red), // { Color_##Red, #Red } => { Color_Red, "Red" }
     COLOR(Green),
     COLOR(Blue),
 };

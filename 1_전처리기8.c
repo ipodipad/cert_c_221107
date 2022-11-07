@@ -6,7 +6,7 @@
 //  매크로 함수 - ... Variadic Macro, c99
 
 // $ gcc source.c -DNDEBUG
-#define NDEBUG
+// #define NDEBUG
 
 #include <stdio.h>
 
@@ -14,12 +14,12 @@
 #define TRACE(...) fprintf(stderr, __VA_ARGS__)
 #else
 #define TRACE(...) (void)0
+#endif
 
 // #define TRACE(...)
 // 세미콜론을 사용하지 않아도, 컴파일 오류가 발생하지 않습니다.
 
-// (void) => noop 기계어에서 사라집니다.
-#endif
+// (void) => no-op 기계어에서 사라집니다.
 
 int foo(void)
 {

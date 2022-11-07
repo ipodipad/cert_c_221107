@@ -59,8 +59,8 @@ int main(void)
   // int sum = func1() + func2();
 
   /* 해결 방법 */
-  int r2 = func2();
   int r1 = func1();
+  int r2 = func2();
 
   int sum = r1 + r2;
 
