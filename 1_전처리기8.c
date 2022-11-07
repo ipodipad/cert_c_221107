@@ -6,7 +6,6 @@
 //  매크로 함수 - ... Variadic Macro, c99
 
 // $ gcc source.c -DNDEBUG
-
 #define NDEBUG
 
 #include <stdio.h>
@@ -32,7 +31,7 @@ int main(void)
 {
   (void)foo();
   // - 결과값을 무시해야 하는 함수에 대해서는, 명시적인 (void) 캐스팅을 통해
-  //   반환값을 무시해야 합니다.
+  // 반환값을 무시해야 합니다.
 
   // printf("%d %d %d\n", 10, 20, 30);
   // printf("%d %d\n", 10, 20);
