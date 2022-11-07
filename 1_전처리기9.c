@@ -4,7 +4,7 @@
 // 예외 3. 상수 표현식이 필요할 때
 //   => 인라인 함수를 사용할 수 없습니다.
 
-#define DIV2(x) ((x) / 2)
+#define DIV2(x) ((x) / 2) /* 컴파일 타임 상수 */
 
 static inline int div2(int x) { return x / 2; }
 
