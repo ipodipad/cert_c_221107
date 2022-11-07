@@ -7,6 +7,7 @@ int dbl(int x) { return x + x; }
 // #define DBL(x) (x) + (x)
 
 // 매크로로 치환되는 영역은 반드시 괄호로 감싸야 합니다.
+// => 우선순위에 대한 문제가 발생할 수 있습니다.
 #define DBL(x) ((x) + (x))
 
 int main(void)
