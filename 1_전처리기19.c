@@ -53,6 +53,7 @@ void show(int n)
     FE_4(FUNC, __VA_ARGS__); \
   } while (0)
 
+#if 0
 int main(void)
 {
   FE_1(show, 10); // show(10)
@@ -66,6 +67,20 @@ int main(void)
   // => show(10); show(20); show(30);
 
   FE_5(show, 10, 20, 30, 40, 50);
+
+  return 0;
+}
+#endif
+
+#define CONCAT_IMPL(a, b) a##b
+#define CONCAT(a, b) CONCAT_IMPL(a, b)
+
+#define FOREACH_N(N, FUNC, ...) CONCAT(FE_, N)(FUNC, __VA_ARGS__)
+
+int main(void)
+{
+  FOREACH_N(3, show, 10, 20, 30);         // => FE_3(show, 10, 20, 30)
+  FOREACH_N(5, show, 10, 20, 30, 40, 50); // => FE_5(show, 10, 20, 30, 40, 50)
 
   return 0;
 }
