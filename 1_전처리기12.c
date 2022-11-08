@@ -118,18 +118,34 @@ int main(void)
 }
 #endif
 
-// ???
-foo(void)
+// int x[2][3]
+// 1. x[2]
+// => x는 2개짜리 배열입니다. 한개의 원소타입이?
+
+// 2. x[2][3]
+// => 3개짜리 배열입니다. 한개의 원소타입이?
+
+// 3. int x[2][3]
+// => 한개의 원소타입이 int 입니다.
+
+int (*foo(void))[3]
 {
   static int x[2][3];
-  return x;
+  // 몇개짜리 배열인가요? 2개
+  //  : [ int[3] ][ int[3] ]
+
+  return x; // return &x[0]
+  // int(*)[3]
 }
 
-// ???
-goo(void)
+int (*(*goo(void))(void))[3]
 {
   return &foo;
+  // int (*(*)(void))[3]
 }
+
+int add(int a, int b) { return a + b; }
+// int(*)(int a, int b) -----> int(int, int)
 
 int main(void)
 {
