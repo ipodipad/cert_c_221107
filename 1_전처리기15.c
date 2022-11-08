@@ -34,6 +34,7 @@ void _foo(void) {} /* NO */
 
 struct _goo /* NO */
 {
+  int a;
 };
 
 enum _e /* NO */
