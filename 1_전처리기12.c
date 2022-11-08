@@ -36,7 +36,7 @@ int main(void)
 }
 #endif
 
-#if 1
+#if 0
 // C/C++ 에서 타입을 구하는 방법
 //  - 이름(식별자)을 뺀 나머지가 타입입니다.
 
@@ -71,3 +71,22 @@ int main(void)
   return 0;
 }
 #endif
+
+// 반환 타입은?
+foo(void)
+{
+  static int x[3]; // 내부 정적 변수 / 정적 지역 변수
+  return x;
+}
+
+// 반환 타입은?
+goo(void)
+{
+  static int x[3];
+  return &x;
+}
+
+int main(void)
+{
+  return 0;
+}
