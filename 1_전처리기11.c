@@ -5,9 +5,9 @@
 // 1. 호출하지 않고, 텍스트 치환하므로 함수 호출 오버헤드가 존재하지 않습니다.
 // 2. 타입에 종속적이지 않은 함수를 구현할 수 있습니다.
 
-// 해결 방법 1. _Generic
 #if 0
 #define ABS(x) ((x) > 0 ? (x) : (-x))
+// 동일한 이름으로 다양한 타입에 대해서 사용할 수 있습니다.
 
 // 인라인 함수로 제공할 때, 아래와 같이 각 타입에 따른 별도의 함수를 제공해야 합니다.
 // => C는 오버로딩을 지원하지 않기 때문에, 다른 이름으로 제공해야 합니다.
@@ -53,7 +53,8 @@ int main(void)
 }
 #endif
 
-// C11 - _Generic
+// 해결 방법 1. _Generic
+//            C11 표준에서 도입이 되었습니다.
 #if 0
 #define ABS(x) _Generic((x), int             \
                         : iabs(x), long long \
@@ -99,6 +100,7 @@ int main(void)
 }
 #endif
 
+#if 1
 // #define ABS(x) ((x) > 0 ? (x) : (-x))
 
 // 해결 방법 2. GCC 확장 - __typeof
@@ -128,3 +130,4 @@ int main(void)
 
   return 0;
 }
+#endif

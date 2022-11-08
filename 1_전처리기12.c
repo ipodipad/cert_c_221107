@@ -23,7 +23,8 @@ int main(void)
   // cstring p1;
   // cstring p2;
 
-  // cstring p1, p2; /* NO */
+  cstring p1, p2; /* NO */
+  // char* p1, p2;
 
   p1 = "Tom";
   printf("%s\n", p1);
@@ -35,8 +36,9 @@ int main(void)
 }
 #endif
 
+#if 1
 // C/C++ 에서 타입을 구하는 방법
-//  - 이름을 뺀 나머지가 타입입니다.
+//  - 이름(식별자)을 뺀 나머지가 타입입니다.
 
 int main(void)
 {
@@ -58,7 +60,14 @@ int main(void)
   printf("%lu\n", sizeof(x));
   printf("%lu\n", sizeof(int[3]));
 
-  int(*p2)[3] = &x;
+  // int(*p2)[3] = &x;
+
+  // int[3]* p2 = &x; => 허용 X, 배열의 첨자는 식별자의 뒤에 위치해야 합니다.
+  // int* p2[3] = &x; => p2는 [3]이 우선순위가 높기 때문에, 배열이 됩니다.
+  //                     [ int* ][ int* ][ int* ]
+
+  // int (*p2)[3] => * ----> int[3]
 
   return 0;
 }
+#endif
