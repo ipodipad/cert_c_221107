@@ -128,6 +128,7 @@ int main(void)
 // 3. int x[2][3]
 // => 한개의 원소타입이 int 입니다.
 
+#if 0
 int (*foo(void))[3]
 {
   static int x[2][3];
@@ -146,6 +147,33 @@ int (*(*goo(void))(void))[3]
 
 int add(int a, int b) { return a + b; }
 // int(*)(int a, int b) -----> int(int, int)
+
+int main(void)
+{
+  return 0;
+}
+#endif
+
+// int a;
+// typedef int a;
+//  => 변수를 만드는 형태로 타입의 별칭을 지정할 수 있습니다.
+typedef int (*PARR3)[3];
+
+// int (*foo(void))[3]
+PARR3 foo(void)
+{
+  static int x[2][3];
+  return x;
+}
+
+typedef PARR3 (*FP)(void);
+
+// int (*(*goo(void))(void))[3]
+FP foo(void)
+{
+  return &foo;
+  // int (*(*)(void))[3]
+}
 
 int main(void)
 {
