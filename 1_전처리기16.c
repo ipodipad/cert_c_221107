@@ -11,10 +11,13 @@
 #ifndef NDEBUG
 
 #define xassert(expr) \
-  if (!expr)          \
+  do                  \
   {                   \
-    abort();          \
-  }
+    if (!expr)        \
+    {                 \
+      abort();        \
+    }                 \
+  } while (0)
 
 #else
 
