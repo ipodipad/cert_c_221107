@@ -65,6 +65,7 @@ int main(void)
 }
 #endif
 
+// 해결방법 2. GCC/Clang에서 지원하는 방법
 #define SWAP(a, b) \
   ({               \
     int tmp = a;   \
@@ -72,7 +73,6 @@ int main(void)
     b = tmp;       \
   })
 
-// 해결방법 2. GCC/Clang에서 지원하는 방법
 int main(void)
 {
   int x = 10, y = 20;
