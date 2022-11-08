@@ -65,6 +65,7 @@ int main(void)
 }
 #endif
 
+#if 1
 // 해결방법 2. GCC/Clang에서 지원하는 방법
 #define SWAP(a, b) \
   ({               \
@@ -79,8 +80,9 @@ int main(void)
 
   int tmp;
 
-  SWAP(x, y);
-  printf("%d %d\n", x, y);
+  int result = SWAP(x, y);
+  printf("%d %d %d\n", x, y, result);
 
   return 0;
 }
+#endif
