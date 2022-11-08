@@ -17,6 +17,10 @@
 #define LOG(msg) fprintf(stderr, "["__FILE__ \
                                  "(" TO_STR(__LINE__) ")] " msg "\n")
 
+#define LOG2(msg, ...) fprintf(stderr, "["__FILE__                          \
+                                       "(" TO_STR(__LINE__) ")] " msg "\n", \
+                               __VA_ARGS__)
+
 #define PI 3.14
 
 #define HELLO hello
@@ -27,6 +31,8 @@
 
 int main(void)
 {
+  LOG2("hello: %d %d %d", 10, 20, 30);
+
   int hello1 = 10;
   printf("%d\n", CONCAT(hello, 1));
   //             CONCAT(hello, 1) => hello##1 => hello1
