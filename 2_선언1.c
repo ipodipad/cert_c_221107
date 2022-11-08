@@ -30,6 +30,13 @@ void print_point(const struct point *pt)
   // pt->x = 100; /* 의도하지 않은 변경 */
 }
 
+// 불변성 / 상수 객체 지향해야 합니다.
+// => 생성 이후에 값이 변경되지 않습니다.
+// => 불변성은 애플리케이션의 정확성과 안정성을 보장하는데 도움이 됩니다.
+//  1) 멀티 스레드에서 동기화 이슈가 발생하지 않습니다.
+//  2) 참조 계수 등의 자원 공유 모델을 쉽게 구현할 수 있습니다.
+//  3) 객체(대상체)의 값이 변경되는 경로를 쉽게 추적할 수 있습니다.
+
 int main(void)
 {
   printf("%lu\n", sizeof(struct point));
@@ -37,6 +44,10 @@ int main(void)
   struct point pt1 = {10, 20};
   print_point(&pt1);
   print_point(&pt1);
+
+  const struct point ct = {10, 20}; /* 상수 객체(불변 객체) */
+
+  struct point vt = {10, 20}; /* 가변 객체 */
 
   return 0;
 }
