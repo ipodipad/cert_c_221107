@@ -30,7 +30,7 @@ struct packet
 #define CONCAT(a, b) CONCAT_IMPL(a, b)
 
 #define STATIC_ASSERT(expr) \
-  char CONCAT(assertion_failed_at_line_, __LINE__)[(expr) ? 1 : -1]
+  typedef char CONCAT(assertion_failed_at_line_, __LINE__)[(expr) ? 1 : -1]
 
 int main(void)
 {
