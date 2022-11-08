@@ -29,23 +29,35 @@ int a = 100;
 */
 
 // C - external linkage
-const int c1 = 100;
+extern const int c1 = 100;
 
 // C++ - internal linkage
-const int c2 = 100;
+extern const int c2 = 100;
 /*
+const int c1 = 100;
+const int c2 = 100;
 C
 0000000000000020 S _c1
 0000000000000024 S _c2
-
                  U _foo
 0000000000000000 T _main
 000000000000001c D _x
 
+const int c1 = 100;
+const int c2 = 100;
 C++
                  U __Z3foov
 0000000000000000 T _main
 000000000000001c D _x
+
+extern const int c1 = 100;
+extern const int c2 = 100;
+                 U __Z3foov
+0000000000000020 S _c1
+0000000000000024 S _c2
+0000000000000000 T _main
+000000000000001c D _x
+
 
 */
 
