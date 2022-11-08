@@ -66,6 +66,7 @@ const size_t system_message_size = sizeof(system_message);
 
 void set_error(const char *message)
 {
+  // 한 범위가 다른 범위에서 포함되는 두 범위에서 동일한 변수 이름을 사용하면 안됩니다.
   char msg[16];
 
   snprintf(system_message, system_message_size, "Error: %s\n", message);
