@@ -72,13 +72,14 @@ int main(void)
 }
 #endif
 
+// 인자 개수를 직접 첫번째 인자로 전달해야 합니다.
+
+#if 0
 #define CONCAT_IMPL(a, b) a##b
 #define CONCAT(a, b) CONCAT_IMPL(a, b)
 
 #define FOREACH_N(N, FUNC, ...) CONCAT(FE_, N)(FUNC, __VA_ARGS__)
-// 인자 개수를 직접 첫번째 인자로 전달해야 합니다.
 
-#if 0
 
 int main(void)
 {
@@ -89,6 +90,7 @@ int main(void)
 }
 #endif
 
+#if 0
 #define COUNT_IMPL(_1, _2, _3, _4, _5, N, ...) N
 #define COUNT(...) COUNT_IMPL(__VA_ARGS__, 5, 4, 3, 2, 1, 0)
 
@@ -107,6 +109,27 @@ int main(void)
   n = COUNT();
   //  COUNT_IMPL(5,  4,  3,  2,  1,  0)
   //            _1, _2, _3, _4, _5, [N]
+
+  return 0;
+}
+#endif
+
+#define CONCAT_IMPL(a, b) a##b
+#define CONCAT(a, b) CONCAT_IMPL(a, b)
+#define FOREACH_N(N, FUNC, ...) CONCAT(FE_, N)(FUNC, __VA_ARGS__)
+
+#define COUNT_IMPL(_1, _2, _3, _4, _5, N, ...) N
+#define COUNT(...) COUNT_IMPL(__VA_ARGS__, 5, 4, 3, 2, 1, 0)
+
+#define FOREACH(FUNC, ...) FOREACH_N(COUNT(__VA_ARGS__), FUNC, __VA_ARGS__)
+
+int main(void)
+{
+  FOREACH(show, 10, 20, 30);
+
+  FOREACH(show, 10, 20, 30, 40, 50);
+
+  FOREACH(show, 10, 20);
 
   return 0;
 }
