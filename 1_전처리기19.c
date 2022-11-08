@@ -76,11 +76,37 @@ int main(void)
 #define CONCAT(a, b) CONCAT_IMPL(a, b)
 
 #define FOREACH_N(N, FUNC, ...) CONCAT(FE_, N)(FUNC, __VA_ARGS__)
+// 인자 개수를 직접 첫번째 인자로 전달해야 합니다.
+
+#if 0
 
 int main(void)
 {
   FOREACH_N(3, show, 10, 20, 30);         // => FE_3(show, 10, 20, 30)
   FOREACH_N(5, show, 10, 20, 30, 40, 50); // => FE_5(show, 10, 20, 30, 40, 50)
+
+  return 0;
+}
+#endif
+
+#define COUNT_IMPL(_1, _2, _3, _4, _5, N, ...) N
+#define COUNT(...) COUNT_IMPL(__VA_ARGS__, 5, 4, 3, 2, 1, 0)
+
+int main(void)
+{
+  int n = COUNT(1, 2, 3);
+  //    COUNT_IMPL(1,  2,  3,  5,  4,  3, 2, 1, 0)
+  //              _1, _2, _3, _4, _5, [N]
+  printf("%d\n", n);
+
+  n = COUNT(1, 2, 3, 4, 5);
+  //  COUNT_IMPL(1,  2,  3,  4,  5,  5,  4, 3, 2, 1, 0)
+  //            _1, _2, _3, _4, _5, [N]
+  printf("%d\n", n);
+
+  n = COUNT();
+  //  COUNT_IMPL(5,  4,  3,  2,  1,  0)
+  //            _1, _2, _3, _4, _5, [N]
 
   return 0;
 }
