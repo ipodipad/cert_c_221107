@@ -15,8 +15,10 @@
 // 3. 상수 표현식에 대한 어썰션은 static assert(정적 어썰션)를 이용하는 것이 좋습니다.
 // => 컴파일 타임에 조건이 성립되는지 여부를 확인할 수 있습니다.
 //   1) 컴파일 타임에 동작하기 때문에, 실행 시간 오버헤드가 존재하지 않습니다.
-//   2) c11에 표준으로 도입되었습니다.
+//   2) C11에 표준으로 도입되었습니다.
 //      _Static_assert / static_assert
+//   3) C++11에서 static_assert가 표준으로 도입되었습니다.
+//    => C++ 호환성을 고려한다면, static_assert를 사용하는 것이 좋습니다.
 
 struct packet
 {
@@ -39,10 +41,13 @@ int main(void)
 {
   printf("%lu\n", sizeof(struct packet));
   // assert(sizeof(struct packet) == 5);
+
+  assert(sizeof(struct packet) == 5 && "Packet size must 5");
+
   // STATIC_ASSERT(sizeof(struct packet) == 5);
 
-  _Static_assert(sizeof(struct packet) == 5, "Packet size must 5");
-  static_assert(sizeof(struct packet) == 5, "Packet size must 5");
+  // _Static_assert(sizeof(struct packet) == 5, "Packet size must 5");
+  // static_assert(sizeof(struct packet) == 5, "Packet size must 5");
 
   printf("Program Start\n");
 
