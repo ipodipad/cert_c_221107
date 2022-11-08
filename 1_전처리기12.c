@@ -72,6 +72,7 @@ int main(void)
 }
 #endif
 
+#if 0
 // int *foo(void)
 // 1. foo(void)
 //  => foo는 인자 없는 함수입니다. 반환타입은?
@@ -109,6 +110,25 @@ int (*goo(void))[3]
   static int x[3];
   return &x;
   // &x -> int(*)[3]
+}
+
+int main(void)
+{
+  return 0;
+}
+#endif
+
+// ???
+foo(void)
+{
+  static int x[2][3];
+  return x;
+}
+
+// ???
+goo(void)
+{
+  return &foo;
 }
 
 int main(void)
