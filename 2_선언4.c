@@ -38,6 +38,22 @@ int main(void)
   } while (0)
 #endif
 
+#define CONCAT_IMPL(a, b) a##b
+#define CONCAT(a, b) CONCAT_IMPL(a, b)
+#define UNIQUE_NAME(name) CONCAT(name, __LINE__)
+
+int UNIQUE_NAME(a);
+
+#if 0
+#define SWAP(type, a, b) \
+  do                     \
+  {                      \
+    type __tmp = a;      \
+    a = b;               \
+    b = __tmp;           \
+  } while (0)
+#endif
+
 #define SWAP(type, a, b) \
   do                     \
   {                      \
@@ -52,7 +68,8 @@ int main(void)
   int b = 20;
 
   SWAP(int, tmp, b);
-  // do { int tmp = tmp; tmp = b; b = tmp; } while (0);
+  // do { int tmp = tmp; tmp = b; b = tmp; } while (0);     => NO
+  // do { int __tmp = tmp; tmp = b; b = __tmp; } while (0); => OK
 
   printf("%d %d\n", tmp, b);
 
