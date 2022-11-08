@@ -19,8 +19,22 @@
 
 #define PI 3.14
 
+#define HELLO hello
+
+#define CONCAT_IMPL(a, b) a##b
+#define CONCAT(a, b) CONCAT_IMPL(a, b)
+// 핵심: 토큰을 문자열로 변환하거나, 두개의 토큰을 연결하는 작업은 2단계로 구성해야 합니다.
+
 int main(void)
 {
+  int hello1 = 10;
+  printf("%d\n", CONCAT(hello, 1));
+  //             CONCAT(hello, 1) => hello##1 => hello1
+
+  printf("%d\n", CONCAT(HELLO, 1));
+  //             CONCAT(HELLO, 1) -> HELLO##1 -> HELLO1
+  //             CONCAT(HELLO, 1) -> CONCAT_IMPL(hello, 1) -> hello##1 -> hello1
+
   // [1_전처리기14.c(__LINE__)] hello, world
   LOG("hello, world");
 
