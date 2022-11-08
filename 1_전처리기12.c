@@ -72,18 +72,43 @@ int main(void)
 }
 #endif
 
+// int *foo(void)
+// 1. foo(void)
+//  => foo는 인자 없는 함수입니다. 반환타입은?
+
+// 2. *foo(void)
+//  => 반환타입은 포인터 입니다. 가르키는 타입은?
+
+// 3. int *foo(void)
+//  => 가르키는 타입은 int입니다.
+
 // 반환 타입은?
-foo(void)
+int *foo(void)
 {
   static int x[3]; // 내부 정적 변수 / 정적 지역 변수
   return x;
+  // x -> &x[0] -> int*
 }
 
+// int (*goo(void))[3]
+// 1. goo(void)
+//  => goo는 인자 없는 함수입니다. 반환타입은?
+
+// 2. (*goo(void))
+//  => 반환타입은 포인터입니다. 가르키는 타입은?
+
+// 3. (*goo(void))[3]
+//  => 가르키는 타입은 3개짜리 배열입니다. 하나의 원소타입은?
+
+// 4. int (*goo(void))[3]
+//  => 하나의 원소타입은 int 입니다.
+
 // 반환 타입은?
-goo(void)
+int (*goo(void))[3]
 {
   static int x[3];
   return &x;
+  // &x -> int(*)[3]
 }
 
 int main(void)
