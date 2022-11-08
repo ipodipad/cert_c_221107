@@ -41,9 +41,9 @@ int main(void)
 }
 #endif
 
+#if 0
 // 해결방법 1. 복수 구문 매크로 함수는 do {} while(0)로 감싸야 합니다.
 //   do {} while (0)
-
 #define SWAP(a, b) \
   do               \
   {                \
@@ -52,6 +52,27 @@ int main(void)
     b = tmp;       \
   } while (0)
 
+int main(void)
+{
+  int x = 10, y = 20;
+
+  int tmp;
+
+  SWAP(x, y);
+  printf("%d %d\n", x, y);
+
+  return 0;
+}
+#endif
+
+#define SWAP(a, b) \
+  ({               \
+    int tmp = a;   \
+    a = b;         \
+    b = tmp;       \
+  })
+
+// 해결방법 2. GCC/Clang에서 지원하는 방법
 int main(void)
 {
   int x = 10, y = 20;
