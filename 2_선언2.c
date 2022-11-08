@@ -69,7 +69,6 @@ int main(void)
 //  2. * 기호의 뒤에 존재할 때
 //  const
 //    p ----> n
-
 int main(void)
 {
   int n = 10;
