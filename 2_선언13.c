@@ -25,6 +25,9 @@ int main(void)
 // 2. 가변 인자 함수는 함수의 작성자와 함수의 사용자간의 암묵적 계약을 정의해서
 //    함수가 특정 호출에서 전달된 인자의 수를 결정할 수 있도록 합니다.
 
+//    printf("%d %d", 10, 20);        => 2개
+//    printf("%d %d %d", 10, 20, 30); => 3개
+
 // 3. 가변 인자를 처리하는 다양한 매크로를 stdarg.h를 통해서 제공됩니다.
 //    - va_list
 //    - va_start
@@ -33,6 +36,10 @@ int main(void)
 
 // 4. 가변 인자를 통해 전달되는 인자의 타입을 알 수 없습니다.
 //  => 암묵적 약속이 필요합니다.
+//    %d => int
+//    %c => char
+//    %s => char[], const char*
+
 #if 0
 #include <stdarg.h>
 
@@ -81,6 +88,56 @@ int main(void)
   result = average(10, 20, 30, 40, 50, VA_END);
   printf("%d\n", result);
 
+  result = average(-1, 10, 20, 30, VA_END);
+  printf("%d\n", result);
+
   return 0;
 }
 #endif
+
+#include <stdarg.h>
+
+// 구현 방법 2. 인자의 개수를 명시적으로 전달받는 방법
+
+int average(int cnt, ...)
+{
+  if (cnt <= 0)
+  {
+    return 0;
+  }
+
+  int sum = 0;
+
+  va_list ap;
+  va_start(ap, cnt); // 초기화
+
+  for (int i = 0; i < cnt; ++i)
+  {
+    sum += va_arg(ap, int);
+  }
+
+  va_end(ap); // 제거
+  return sum / cnt;
+}
+
+int main(void)
+{
+  int result;
+
+  result = average(0);
+  printf("%d\n", result);
+
+  result = average(1, 10);
+  printf("%d\n", result);
+
+  result = average(2, 10, 20);
+  printf("%d\n", result);
+
+  result = average(4, 20, 30, 40, 50);
+  printf("%d\n", result);
+
+  result = average(4, -1, 10, 20, 30);
+  printf("%d\n", result);
+
+  return 0;
+}

@@ -4,6 +4,7 @@
     "_stdio.h": "c",
     "typeinfo": "c",
     "__locale": "c",
-    "errno.h": "c"
+    "errno.h": "c",
+    "stdarg.h": "c"
   }
 }
