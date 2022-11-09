@@ -124,6 +124,7 @@ void init_array(int *data, int len)
   }
 }
 
+// 하나의 원소 타입이 int[3]인 모든 2차원 배열이 사용할 수 있는 함수입니다.
 void init_array2(int (*x)[3], int len)
 {
   for (int i = 0; i < len; ++i)
@@ -140,6 +141,9 @@ int main(void)
   int x[2][3];
   init_array2(x, sizeof(x) / sizeof(x[0]));
   // [ int[3] ][ int[3] ]
+
+  int x2[5][3];
+  init_array2(x2, 5);
 
   for (int i = 0; i < 2; ++i)
   {
