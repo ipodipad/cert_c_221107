@@ -2,6 +2,8 @@
   "files.associations": {
     "stdio.h": "c",
     "_stdio.h": "c",
-    "typeinfo": "c"
+    "typeinfo": "c",
+    "__locale": "c",
+    "errno.h": "c"
   }
 }

@@ -106,3 +106,42 @@ int main(void)
 
   return 0;
 }
+
+#if 0
+#include <errno.h>
+#include <stdio.h>
+#include <string.h>
+
+int foo(const char *filename)
+{
+  FILE *fp = fopen("a.txt", "r");
+  if (fp == NULL)
+  {
+    return -1;
+  }
+
+  if (fp == NULL)
+  {
+    return -ENOENT;
+  }
+
+  return 0;
+}
+
+// errno: 에러의 원인을 파악할 수 있는 전역 변수 입니다.     / errno.h
+// strerror: 에러의 번호가 어떤 원인인지 문자열로 반환합니다. / string.h
+// perror: 에러의 원인을 출력해줍니다.                   / stdio.h
+
+int main(void)
+{
+  FILE *fp = fopen("a.txt", "r");
+  if (fp == NULL)
+  {
+    // fprintf(stderr, "fopen error: %s\n", strerror(errno));
+    perror("fopen error");
+    return 1;
+  }
+
+  return 0;
+}
+#endif

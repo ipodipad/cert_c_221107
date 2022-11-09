@@ -33,7 +33,7 @@ int main(void)
 
 // 4. 가변 인자를 통해 전달되는 인자의 타입을 알 수 없습니다.
 //  => 암묵적 약속이 필요합니다.
-
+#if 0
 #include <stdarg.h>
 
 // 구현 방법 1. 마지막에 VA_END가 전달된다.
@@ -83,3 +83,4 @@ int main(void)
 
   return 0;
 }
+#endif
