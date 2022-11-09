@@ -41,6 +41,11 @@ int main(void)
 }
 #endif
 
+// cvr 한정자
+// - const
+// - volatile
+// - restrict
+
 // restrict 한정자
 //  : C99에서 추가된 키워드입니다.
 //    포인터가 가리키는 영역에서 "같은 메모리 공간을 참조하지 않는다"라는 한정자로써
