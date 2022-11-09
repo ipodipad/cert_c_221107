@@ -61,6 +61,13 @@ int main(void)
 //      컴파일러에게 알려주는 키워드입니다.
 //      컴파일러는 volatile로 지정된 변수에 대해서 캐싱을 제한합니다.
 
+// register: 사용되지 않는 키워드
+
+// cvr 제한자 - 컴파일러 최적화
+// - const: 값이 변경되지 않음 => 필수
+// - volatile: 외부에 의해 값이 변경될 수 있음. 캐싱을 제한해야 함 => 필수
+// - restrict: 포인터의 연산에서 중첩된 접근이 없음. 최적화된 기계어 코드 생성 => 주의
+
 /* 잘못된 코드 */
 // int flag = 1;
 
@@ -81,7 +88,7 @@ void handler(int signum)
 
 void process(void)
 {
-  while (flag)
+  while (flag) // 루프의 조건에서 참조되는 변수 => 캐싱의 대상
   {
     //...
   }
