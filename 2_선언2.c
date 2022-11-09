@@ -55,12 +55,13 @@ int main(void)
   ipp = &ip;
   *ipp = &i;
 
-  // *ip = 100; /* 컴파일 오류 */
+  *ip = 100; /* 컴파일 오류 */
 
   return 0;
 }
 #endif
 
+#if 1
 // const 위치
 //  1. * 기호의 앞에 존재할 때
 //         const
@@ -98,3 +99,4 @@ int main(void)
 
   return 0;
 }
+#endif

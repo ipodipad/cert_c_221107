@@ -44,16 +44,6 @@ int main(void)
 
 int UNIQUE_NAME(a);
 
-#if 0
-#define SWAP(type, a, b) \
-  do                     \
-  {                      \
-    type __tmp = a;      \
-    a = b;               \
-    b = __tmp;           \
-  } while (0)
-#endif
-
 #define SWAP(type, a, b) \
   do                     \
   {                      \

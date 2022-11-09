@@ -11,7 +11,7 @@ int main(void)
 {
   int x = 10, y = 20;
 
-  // int tmp; /* Compile Error */
+  int tmp; /* Compile Error */
 
   SWAP(x, y);
   printf("%d %d\n", x, y);

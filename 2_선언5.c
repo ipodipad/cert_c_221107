@@ -21,6 +21,15 @@
 //   3) C++11에서 static_assert가 표준으로 도입되었습니다.
 //    => C++ 호환성을 고려한다면, static_assert를 사용하는 것이 좋습니다.
 
+// 0    1    2    3    4    5
+// |----|----|----|----|----|----|----|----|----|
+// | cmd|              |---     len     ---|
+
+// #pragma pack(1)
+// 0    1    2    3    4    5
+// |----|----|----|----|----|----|----|----|----|
+// | cmd|---     len     ---|
+
 struct packet
 {
   char cmd;
@@ -34,7 +43,7 @@ struct packet
 #define CONCAT_IMPL(a, b) a##b
 #define CONCAT(a, b) CONCAT_IMPL(a, b)
 
-// c99
+// c11 이전에서 사용하는 방법.
 #define STATIC_ASSERT(expr) \
   typedef char CONCAT(assertion_failed_at_line_, __LINE__)[(expr) ? 1 : -1]
 
@@ -42,13 +51,14 @@ int main(void)
 {
   printf("%lu\n", sizeof(struct packet));
   // assert(sizeof(struct packet) == 5);
-
   assert(sizeof(struct packet) == 5 && "Packet size must 5");
 
-  // STATIC_ASSERT(sizeof(struct packet) == 5);
+#if 0
+  STATIC_ASSERT(sizeof(struct packet) == 5);
 
-  // _Static_assert(sizeof(struct packet) == 5, "Packet size must 5");
-  // static_assert(sizeof(struct packet) == 5, "Packet size must 5");
+  _Static_assert(sizeof(struct packet) == 5, "Packet size must 5");
+  static_assert(sizeof(struct packet) == 5, "Packet size must 5");
+#endif
 
   printf("Program Start\n");
 

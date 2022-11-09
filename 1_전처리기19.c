@@ -7,15 +7,17 @@
 // : 매크로 함수에서 인자를 다양하게 전달받을 수 있는 가변인자를 지원합니다.
 // => c99 표준입니다.
 #define TRACE(fmt, ...) \
-  fprintf(stderr, "%s:%d (%s): " fmt, __FILE__, __LINE__, __func__, __VA_ARGS__);
+  fprintf(stderr, "%s:%d (%s): " fmt, __FILE__, __LINE__, __func__, __VA_ARGS__)
 
 int main(void)
 {
   TRACE("Hello world - %d %d %s\n", 10, 20, "world");
+  // TRACE("123123"); /* Compile Error */
   return 0;
 }
 #endif
 
+#if 1
 #include <stdio.h>
 
 void show(int n)
@@ -80,7 +82,6 @@ int main(void)
 
 #define FOREACH_N(N, FUNC, ...) CONCAT(FE_, N)(FUNC, __VA_ARGS__)
 
-
 int main(void)
 {
   FOREACH_N(3, show, 10, 20, 30);         // => FE_3(show, 10, 20, 30)
@@ -123,6 +124,7 @@ int main(void)
 
 #define FOREACH(FUNC, ...) FOREACH_N(COUNT(__VA_ARGS__), FUNC, __VA_ARGS__)
 
+#if 0
 int main(void)
 {
   FOREACH(show, 10, 20, 30);
@@ -133,3 +135,6 @@ int main(void)
 
   return 0;
 }
+#endif
+
+#endif

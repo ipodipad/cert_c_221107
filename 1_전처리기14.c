@@ -25,8 +25,12 @@
 
 #define HELLO hello
 
+// 잘못된 코드
+// #define CONCAT(a, b) a##b
+
 #define CONCAT_IMPL(a, b) a##b
 #define CONCAT(a, b) CONCAT_IMPL(a, b)
+
 // 핵심: 토큰을 문자열로 변환하거나, 두개의 토큰을 연결하는 작업은 2단계로 구성해야 합니다.
 
 int main(void)

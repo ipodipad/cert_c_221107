@@ -39,6 +39,8 @@ void set_error(const char *message)
 {
   char msg[16]; /* 의도하지 않은 충돌나는 지역 변수 */
 
+  // ....
+
   snprintf(msg, msgsize, "Error: %s\n", message);
   // sprintf(msg, "Error: %s\n", message);
 }
@@ -57,7 +59,11 @@ int main(void)
 }
 #endif
 
-int get_fd(void) { return -1; }
+#if 1
+int get_fd(void)
+{
+  return -1;
+}
 
 // 전역 변수는 함수 안에서 가려질 수 있는 문제가 발생할 수 있으므로,
 // 이름을 좀더 설명적으로 작성해야 합니다.
@@ -84,3 +90,4 @@ int main(void)
   printf("error message: %s\n", system_message);
   return 0;
 }
+#endif

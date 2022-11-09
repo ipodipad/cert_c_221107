@@ -29,10 +29,10 @@ int a = 100;
 */
 
 // C - external linkage
-extern const int c1 = 100;
+const int c1 = 100;
 
 // C++ - internal linkage
-extern const int c2 = 100;
+const int c2 = 100;
 /*
 const int c1 = 100;
 const int c2 = 100;
@@ -57,12 +57,16 @@ extern const int c2 = 100;
 0000000000000024 S _c2
 0000000000000000 T _main
 000000000000001c D _x
-
-
 */
+
+#include <stdio.h>
+
+extern const int c;
 
 int main(void)
 {
+  printf("c: %d\n", c);
+
   foo();
   return 0;
 }

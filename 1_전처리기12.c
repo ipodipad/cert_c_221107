@@ -63,10 +63,10 @@ int main(void)
   // int(*p2)[3] = &x;
 
   // int[3]* p2 = &x; => 허용 X, 배열의 첨자는 식별자의 뒤에 위치해야 합니다.
-  // int* p2[3] = &x; => p2는 [3]이 우선순위가 높기 때문에, 배열이 됩니다.
+  // int *p2[3] = &x; => p2는 [3]이 우선순위가 높기 때문에, 배열이 됩니다. - 포인터 배열
   //                     [ int* ][ int* ][ int* ]
 
-  // int (*p2)[3] => * ----> int[3]
+  // int (*p2)[3] => * ----> int[3] - 배열 포인터
 
   return 0;
 }
@@ -105,7 +105,7 @@ int *foo(void)
 //  => 하나의 원소타입은 int 입니다.
 
 // 반환 타입은?
-int (*goo(void))[3]
+int(*goo(void))[3]
 {
   static int x[3];
   return &x;
@@ -139,10 +139,14 @@ int (*foo(void))[3]
   // int(*)[3]
 }
 
+// 함수 Decay
+// - 함수의 이름은 함수 포인터로 해석됩니다.
 int (*(*goo(void))(void))[3]
 {
-  return &foo;
-  // int (*(*)(void))[3]
+  // return &foo;
+  return foo;
+
+  // int (* (*)(void))[3]
 }
 
 int add(int a, int b) { return a + b; }
@@ -169,7 +173,7 @@ PARR3 foo(void)
 typedef PARR3 (*FP)(void);
 
 // int (*(*goo(void))(void))[3]
-FP foo(void)
+FP goo(void)
 {
   return &foo;
   // int (*(*)(void))[3]

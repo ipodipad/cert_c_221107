@@ -5,18 +5,19 @@
 #include <stdio.h>
 
 // assert
-// : 조건이 참이 아닐 경우, 프로그램을 강제 종료시킵니다.
+// : 조건이 참이 아닐 경우, 프로그램을 강제 종료(abort)시킵니다.
 
 // assert의 구현 방식
 #ifndef NDEBUG
 
-#define xassert(expr) \
-  do                  \
-  {                   \
-    if (!expr)        \
-    {                 \
-      abort();        \
-    }                 \
+#define xassert(expr)                                   \
+  do                                                    \
+  {                                                     \
+    if (!expr)                                          \
+    {                                                   \
+      fprintf(stderr, "Assertion failed: %s\n", #expr); \
+      abort();                                          \
+    }                                                   \
   } while (0)
 
 #else
