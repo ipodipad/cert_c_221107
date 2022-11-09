@@ -11,6 +11,11 @@ struct stack
   int size;
 };
 
+void print_stack(const STACK *s)
+{
+  printf("top=%d, size=%d\n", s->top, s->size);
+}
+
 STACK *create_stack(int size)
 {
   printf("create_stack: %d\n", size);

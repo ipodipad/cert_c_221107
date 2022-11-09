@@ -25,6 +25,10 @@ int main(void)
 
   printf("%d %d\n", stack->top, stack->size);
 #endif
+  print_stack(stack);
+
+  // stack->top = 100; /* Compile Error */
+  // printf("%lu\n", sizeof(*stack)); /* Compile Error */
 
   return 0;
 }
