@@ -67,7 +67,7 @@ int main(void)
   void (*f2)(int a, int b) = max; /* OK */
 
   void (*f3)() = foo;     /* NO */
-  void (*f4)(void) = foo; /* NO */
+  void (*f4)(void) = foo; /* OK */
 
   // foo(10, 20); /* 컴파일 오류가 발생하지 않습니다. */
   // goo(10, 20); /* 컴파일 오류 */
