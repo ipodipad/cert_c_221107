@@ -1,6 +1,7 @@
 // 2_선언11.c
 #include <stdio.h>
 
+#if 0
 // 핵심: 중복 가시성을 갖는 동일한 이름공간의 식별자는
 //      타입포그라피적으로 모호하지 않아야 한다.
 int main(void)
@@ -34,6 +35,45 @@ int main(void)
   } xxx;
 
   xxx.id_m = 123;
+
+  return 0;
+}
+#endif
+
+void foo() {}     /* NO */
+void goo(void) {} /* OK */
+
+// K&R Style - 사용하면 안됩니다.
+/*
+int max(a, b)
+int a, b;
+{
+  return a > b ? a : b;
+}
+*/
+
+int max(int a, int b)
+{
+  return a > b ? a : b;
+}
+
+// header
+extern int max(int, int);     /* NO */
+extern int max(int a, int b); /* OK */
+
+int main(void)
+{
+  void (*f1)(int, int) = max;     /* NO */
+  void (*f2)(int a, int b) = max; /* OK */
+
+  void (*f3)() = foo;     /* NO */
+  void (*f4)(void) = foo; /* NO */
+
+  // foo(10, 20); /* 컴파일 오류가 발생하지 않습니다. */
+  // goo(10, 20); /* 컴파일 오류 */
+
+  int result = max(10, 20);
+  printf("result: %d\n", result);
 
   return 0;
 }
