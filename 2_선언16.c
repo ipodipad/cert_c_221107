@@ -9,5 +9,7 @@ int main(void)
 
   print_user(current);
 
+  // printf("%s\n", current->password); /* Compile Error */
+
   return 0;
 }
