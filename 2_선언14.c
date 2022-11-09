@@ -81,7 +81,7 @@ int main(void)
 
 // 해결 방법 2. Windows가 사용하는 전통적인 방식
 //  => 읽기 전용 포인터에 대한 typedef를 별도로 제공합니다.
-
+#if 0
 typedef struct obj
 {
   int i;
@@ -89,6 +89,15 @@ typedef struct obj
 } OBJECT;
 
 typedef OBJECT *POBJECT;
+typedef const OBJECT *PCOBJECT;
+#endif
+
+typedef struct obj
+{
+  int i;
+  float f;
+} OBJECT, *POBJECT;
+
 typedef const OBJECT *PCOBJECT;
 
 void print_obj(PCOBJECT obj)
