@@ -61,7 +61,11 @@ int main(void)
 //      컴파일러에게 알려주는 키워드입니다.
 //      컴파일러는 volatile로 지정된 변수에 대해서 캐싱을 제한합니다.
 
-int flag = 1;
+/* 잘못된 코드 */
+// int flag = 1;
+
+/* 해결 방법 */
+volatile int flag = 1;
 
 void handler(int signum)
 {
