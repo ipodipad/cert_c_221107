@@ -38,11 +38,14 @@ extern void debug_print(USER *p);
 
 int main(void)
 {
+  /* 링크 오류 */
   printf("%s %s\n", current.a, current.b);
 
   USER *user = get_current_user();
 
+  /* 링크 오류 */
   debug_print(user);
+
   print_user(user);
 
   // printf("%s\n", user->password); /* Compile Error */

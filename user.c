@@ -11,10 +11,10 @@ struct user
 
 // 외부에서 접근하면 안되는 전역 변수와 전역 함수에 대해서는
 // 반드시 static으로 만들어야 합니다.
-USER current = {"admin",
-                "admin_password"};
+static USER current = {"admin",
+                       "admin_password"};
 
-void debug_print(USER *user)
+static void debug_print(USER *user)
 {
   printf("User: %s / %s\n", user->name, user->password);
 }
