@@ -1,7 +1,7 @@
 // 2_선언12.c
 #include <stdio.h>
 
-#if 0
+#if 1
 // Out Parameter를 통해 결과를 전달받는 함수입니다.
 int divide(int devided, int divisor, int *result)
 {

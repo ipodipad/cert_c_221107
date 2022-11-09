@@ -1,7 +1,7 @@
 // 2_선언11.c
 #include <stdio.h>
 
-#if 0
+#if 1
 // 핵심: 중복 가시성을 갖는 동일한 이름공간의 식별자는
 //      타입포그라피적으로 모호하지 않아야 한다.
 int main(void)
@@ -40,7 +40,9 @@ int main(void)
 }
 #endif
 
-void foo() {}     /* NO */
+void foo()
+{
+} /* NO */
 void goo(void) {} /* OK */
 
 // K&R Style - 사용하면 안됩니다.

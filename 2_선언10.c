@@ -118,7 +118,7 @@ int main(void)
 }
 #endif
 
-#if 0
+#if 1
 // 원소 타입이 int인 모든 1차원 배열이 사용할 수 있는 함수입니다.
 void init_array(int *data, int len)
 {
