@@ -4,6 +4,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct stack
+{
+  void **arr;
+  int top;
+  int size;
+};
+
 STACK *create_stack(int size)
 {
   printf("create_stack: %d\n", size);
