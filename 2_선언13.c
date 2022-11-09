@@ -98,7 +98,7 @@ int main(void)
 #include <stdarg.h>
 
 // 구현 방법 2. 인자의 개수를 명시적으로 전달받는 방법
-
+#if 0
 int average(int cnt, ...)
 {
   if (cnt <= 0)
@@ -141,3 +141,50 @@ int main(void)
 
   return 0;
 }
+#endif
+
+#if 1
+#define COUNT_IMPL(_1, _2, _3, _4, _5, N, ...) N
+#define COUNT(...) COUNT_IMPL(__VA_ARGS__, 5, 4, 3, 2, 1, 0)
+
+#define average(...) average_impl(COUNT(__VA_ARGS__), __VA_ARGS__)
+
+int average_impl(int cnt, ...)
+{
+  if (cnt <= 0)
+  {
+    return 0;
+  }
+
+  int sum = 0;
+
+  va_list ap;
+  va_start(ap, cnt); // 초기화
+
+  for (int i = 0; i < cnt; ++i)
+  {
+    sum += va_arg(ap, int);
+  }
+
+  va_end(ap); // 제거
+  return sum / cnt;
+}
+
+int main(void)
+{
+  int result;
+  result = average(10);
+  printf("%d\n", result);
+
+  result = average(10, 20);
+  printf("%d\n", result);
+
+  result = average(20, 30, 40, 50);
+  printf("%d\n", result);
+
+  result = average(32, -1, 10, 20, 30);
+  printf("%d\n", result);
+
+  return 0;
+}
+#endif
