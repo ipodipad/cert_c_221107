@@ -13,8 +13,15 @@
 //  => 1 2 3 4 5 0 0 0 0 0
 //  => 1 1 2 3 4 5 0 0 0 0
 
-//    memcpy(void *restrict dst, const void *restrict src, size_t n);
+//   memcpy(void *restrict dst, const void *restrict src, size_t n);
+//   > restrict로 한정된 포인터를 인자로 전달 받습니다.
+//     인자로 전달된 dest와 src를 통해 동일한 영역에 참조가 발생하면,
+//     미정의 동작이 발생합니다.
+
 //   memmove(void *dst, const void *src, size_t len);
+//  > memcpy와 동일한 동작을 수행하지만, memcpy의 경우 restrict 최적화에 의해 더 빠르게 동작합니다.
+//    중첩된 영역에서 memcpy를 사용할 수 없기 때문에, memmove를 이용해야 합니다.
+
 #if 0
 int main(void)
 {
@@ -50,6 +57,9 @@ int main(void)
 //  : C99에서 추가된 키워드입니다.
 //    포인터가 가리키는 영역에서 "같은 메모리 공간을 참조하지 않는다"라는 한정자로써
 //    컴파일러가 최적화에 사용합니다.
+//  => 최적화 옵션이 적용되어야 합니다.
+//    MSVC: /O2
+//     GCC: -O2
 
 // 원인
 // - 같은 영역을 전달하면, 미정의 동작이 발생합니다.
