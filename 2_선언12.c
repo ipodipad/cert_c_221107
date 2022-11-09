@@ -36,6 +36,7 @@ int main(void)
 //  > 에러를 반환하는 함수는 함수의 반환타입을 에러 타입으로 사용하는 것이 좋습니다.
 //    에러 코드도 심볼릭 상수를 통해 제공하는 것이 좋습니다.
 
+#if 0
 enum
 {
   DIVISION_BY_ZERO = -100,
@@ -75,4 +76,33 @@ int main(void)
   {
     printf("%d\n", data);
   }
+}
+#endif
+
+#include <stdio.h>
+#include <string.h>
+
+// strcpy_s, scanf_s ... _s 계열의 함수: C11 Annex K 확장 라이브러리입니다.
+// => 표준에서 강제하고 있지 않습니다.
+// => 일부 플랫폼에서는 해당 기능의 구현을 제공하고 있지 않습니다.
+
+#ifndef __STDC_SECURE_LIB__
+typedef int errno_t;
+#endif
+
+int main(void)
+{
+  errno_t error;
+
+  char buf[10];
+
+  // warning C4996 : 'strcpy' : This function or variable may be unsafe.Consider using strcpy_s instead.
+  // To disable deprecation, use _CRT_SECURE_NO_WARNINGS.See online help for details.
+  // strcpy(buf, "hello");
+
+  // strcpy_s: 버퍼 오버플로우가 발생할 경우, abort()가 수행됩니다.
+  error = strcpy_s(buf, sizeof(buf), "hello");
+  printf("%d\n", error);
+
+  return 0;
 }
