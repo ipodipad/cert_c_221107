@@ -29,6 +29,7 @@
 //   4. void (*signal(int, void (*)(int)))(int)
 //   > 함수의 반환타입은 없습니다.
 
+#if 0
 void handler(int signum)
 {
   printf("handler\n");
@@ -39,6 +40,34 @@ int main(void)
   signal(SIGINT, handler);
 
   getchar();
+
+  return 0;
+}
+#endif
+
+int flag = 1;
+
+void handler(int signum)
+{
+  printf("handler\n");
+  flag = 0;
+}
+
+void process(void)
+{
+  while (flag)
+  {
+    //...
+  }
+  printf("process end\n");
+}
+
+int main(void)
+{
+  signal(SIGINT, handler);
+
+  process();
+  printf("main end\n");
 
   return 0;
 }
