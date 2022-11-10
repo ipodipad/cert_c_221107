@@ -9,8 +9,19 @@ struct user
   char password[32];
 };
 
+#if 0
+USER current = {"admin",
+                "admin_password"};
+
+void debug_print(USER *user)
+{
+  printf("User: %s / %s\n", user->name, user->password);
+}
+#endif
+
 // 외부에서 접근하면 안되는 전역 변수와 전역 함수에 대해서는
 // 반드시 static으로 만들어야 합니다.
+#if 1
 static USER current = {"admin",
                        "admin_password"};
 
@@ -18,6 +29,7 @@ static void debug_print(USER *user)
 {
   printf("User: %s / %s\n", user->name, user->password);
 }
+#endif
 
 USER *get_current_user(void)
 {

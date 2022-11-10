@@ -27,7 +27,7 @@ void print_obj(const POBJECT obj)
 {
   printf("%d %f\n", obj->i, obj->f);
 
-  // obj->f = 5.8F; /* 의도하지 않은 변경 */
+  obj->f = 5.8F; /* 의도하지 않은 변경 */
 }
 
 int main(void)
@@ -50,7 +50,7 @@ int main(void)
 }
 #endif
 
-#if 0
+#if 1
 // 해결 방법 1.
 //  => 포인터에 대한 typedef는 사용하지 않는 것이 좋습니다.
 //     포인터가 아닌 타입에 대해서만 typedef를 수행하자.
@@ -92,6 +92,7 @@ typedef OBJECT *POBJECT;
 typedef const OBJECT *PCOBJECT;
 #endif
 
+#if 0
 typedef struct obj
 {
   int i;
@@ -104,7 +105,7 @@ void print_obj(PCOBJECT obj)
 {
   printf("%d %f\n", obj->i, obj->f);
 
-  // obj->f = 5.8F; /* 컴파일 오류 */
+  obj->f = 5.8F; /* 컴파일 오류 */
 }
 
 int main(void)
@@ -117,3 +118,4 @@ int main(void)
 
   return 0;
 }
+#endif

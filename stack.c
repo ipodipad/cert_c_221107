@@ -4,12 +4,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#if 1
 struct stack
 {
   void **arr;
   int top;
   int size;
 };
+#endif
 
 void print_stack(const STACK *s)
 {

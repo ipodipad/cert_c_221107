@@ -14,8 +14,11 @@ struct stack
 
 typedef struct stack STACK;
 extern STACK *create_stack(int size);
+extern void print_stack(const STACK *s);
+
 #endif
 
+#if 1
 // 전방 선언
 struct stack;
 
@@ -25,5 +28,6 @@ extern STACK *create_stack(int size);
 // 스택의 설계자가 제공하는 기능을 통해서만,
 // 멤버 데이터에 접근이 가능합니다.
 extern void print_stack(const STACK *s);
+#endif
 
 #endif

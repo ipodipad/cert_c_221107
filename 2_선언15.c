@@ -17,7 +17,8 @@ int main(void)
     return 1;
   }
 
-// 구조체의 멤버의 데이터를 외부에서 함부로 변경이 가능합니다.
+  // 구조체의 멤버의 데이터를 외부에서 함부로 변경이 가능합니다.
+
 #if 0
   printf("%d %d\n", stack->top, stack->size);
   stack->top = 10;
