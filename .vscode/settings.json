@@ -6,6 +6,9 @@
     "__locale": "c",
     "errno.h": "c",
     "stdarg.h": "c",
-    "__config": "c"
+    "__config": "c",
+    "vector": "cpp",
+    "ostream": "cpp",
+    "initializer_list": "cpp"
   }
 }
