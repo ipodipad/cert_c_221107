@@ -35,6 +35,7 @@ int main(void)
 }
 #endif
 
+#if 1
 // 해결 방법
 // > 반환되는 값을 변수에 저장(복사)하고 사용해야 합니다.
 int main(void)
@@ -47,3 +48,4 @@ int main(void)
   printf("%s %s\n", rf.a, rg.a); /* OK */
   return 0;
 }
+#endif
