@@ -84,35 +84,6 @@ int main(void)
 }
 #endif
 
-#if 0
-struct AAA
-{
-  void (*f)(struct AAA **p);
-};
-
-struct AAA **g(struct AAA **p)
-{
-  return p;
-}
-
-int main(void)
-{
-  struct AAA aaa;
-  struct AAA *p = &aaa;
-
-  /* 문제점 */
-  // > 만약 g 함수의 결과로 p의 값이 변경된다면,
-  //   함수 지정자 p->f가 호출 이전의 p의 값을 사용하는지
-  //   호출 이후의 변경된 p의 값을 사용하는지 표준에서는 지정되지 않았습니다.
-  //  => 미지정 동작
-  p->f(g(&p));
-
-  /* 해결 방법 */
-  struct AAA **r = g(&p);
-  p->f(r);
-}
-#endif
-
 struct AAA
 {
   void (*f)(struct AAA *p);
