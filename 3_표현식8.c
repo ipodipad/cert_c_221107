@@ -32,7 +32,7 @@ int main(void)
 // 18.2 포인터 사이의 뺄셈은 동일한 배열의 요소를 주소로 지정하는 포인터에 대해서만
 //      사용해야 합니다.
 //  => 오프셋을 구하는 연산으로 사용됩니다.
-
+#if 0
 #include <stdio.h>
 
 int main(void)
@@ -47,7 +47,47 @@ int main(void)
   printf("%ld\n", a1 - p1); // OK, -5 => 요소 5개 앞에 존재한다.
   printf("%ld\n", p1 - a1); // OK,  5 => 요소 5개 뒤에 존재한다.
 
-  printf("%ld\n", p1 - p2); /* 허용되지 않는 연산 */
+  // printf("%ld\n", p1 - p2); /* 허용되지 않는 연산, 미정의 동작 */
+
+  return 0;
+}
+#endif
+
+// 18.3 포인터 간의 관계 연산자 >, >=, <, <= 등의 연산은 동일한 대상체를 가리키는
+//      경우에만 사용해야 합니다.
+
+struct point
+{
+  int x;
+  int y;
+};
+
+int main(void)
+{
+  //            a1       p1
+  int a1[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+  int a2[10];
+
+  int *p1 = a1 + 3;
+  if (p1 < a1) /* OK */
+  {
+  }
+
+  int *p2 = a2;
+  if (p1 < p2) /* 미정의 동작 */
+  {
+  }
+
+  struct point pt1 = {10, 20};
+  struct point pt2 = {30, 40};
+
+  if (&pt1.x < &pt1.y) /* OK, 멤버의 배치 순서를 확인하는 목적 */
+  {
+  }
+
+  if (&pt1.x < &pt2.x) /* 미정의 동작 */
+  {
+  }
 
   return 0;
 }
