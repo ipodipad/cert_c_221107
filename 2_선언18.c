@@ -35,7 +35,10 @@ int main(void)
   }
   printf("\n");
 
+  // $ gcc source.c -O2
+  /* 미정의 동작 */
   // memcpy(data + 1, data, sizeof(int) * 5);
+
   memmove(data + 1, data, sizeof(int) * 5);
 
   for (int i = 0; i < 10; ++i)
@@ -71,7 +74,7 @@ int main(void)
 
 // => MISRA:2012
 //  : restrict를 사용하지 말라.
-
+#if 1
 void inc1(int *a, int *b, int *x)
 {
   // a -> 레지스터
@@ -126,3 +129,5 @@ int main(void)
 
   return 0;
 }
+
+#endif
