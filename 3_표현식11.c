@@ -47,6 +47,7 @@ int main(void)
 }
 #endif
 
+#if 0
 // 해결 방법
 int main(void)
 {
@@ -55,6 +56,27 @@ int main(void)
   int r1 = f1();
 
   func(r1, r2);
+
+  return 0;
+}
+#endif
+
+int value(void)
+{
+  return 10;
+}
+
+void foo(int n)
+{
+  printf("n: %d\n", n);
+}
+
+int main(void)
+{
+  int ret = value();
+  foo(ret);
+
+  foo(value());
 
   return 0;
 }
