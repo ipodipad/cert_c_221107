@@ -53,6 +53,7 @@ int is_odd(int n)
 }
 #endif
 
+#if 0
 int is_even(int n)
 {
   return (n & 1) == 0;
@@ -64,6 +65,28 @@ int main(void)
   printf("%d\n", is_even(-2));
   printf("%d\n", is_even(-3));
   printf("%d\n", is_even(-4));
+
+  return 0;
+}
+#endif
+
+// 식별자의 오른쪽에 오는 연산자가 우선순위가 높습니다.
+//  : [], (), ++, --
+
+void inc(int *p)
+{
+  // *p++; => 미정의 동작의 원인이 될 수 있습니다.
+  // (*p)++;
+
+  ++(*p); // 가독성을 위해 괄호를 사용합니다.
+}
+
+int main(void)
+{
+  int cnt = 0;
+  inc(&cnt);
+
+  printf("%d\n", cnt);
 
   return 0;
 }
