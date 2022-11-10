@@ -157,7 +157,19 @@ error_t copy_file(const char *src, const char *dest1, const char *dest2)
     goto err_dfp2;
   }
 
-  char ch;
+  /* 잘못된 코드 */
+  //  : 0xff를 읽었을 때, char 타입으로 EOF와 구분할 수 없는
+  //    문제가 발생합니다.
+
+  // char ch;
+  // EOF: End Of File => -1
+
+  // EOF: 0xffffffff
+
+  int ch;
+  // char ch: 0xff       --> int --> 0xffffffff
+  //  int ch: 0x000000ff
+
   while ((ch = fgetc(sfp)) != EOF)
   {
     fputc(ch, dfp1);
@@ -177,7 +189,9 @@ err_sfp:
 
 int main(void)
 {
-  error_t error = copy_file("0_시작.c", "result1.c", "result2.c");
+  // error_t error = copy_file("0_시작.c", "result1.c", "result2.c");
+  error_t error = copy_file("a.out", "a.out2", "a.out3");
+
   if (error == 0)
   {
     printf("OK!\n");
