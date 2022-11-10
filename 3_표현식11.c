@@ -73,8 +73,8 @@ void foo(int n)
 
 int main(void)
 {
-  int ret = value();
-  foo(ret);
+  // int ret = value();
+  // foo(ret);
 
   foo(value());
 
