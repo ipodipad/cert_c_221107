@@ -41,6 +41,9 @@ int main(void)
 
 #include <stdio.h>
 
+// 지역 변수, 힙 변수(malloc)는 초기화하지 않을 경우,
+// 접근하였을 때 미정의 동작이 발생합니다.
+
 int main(void)
 {
   struct timeval tv;
