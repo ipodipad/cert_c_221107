@@ -84,8 +84,13 @@ enum
   FILE_OPEN_ERROR,
 };
 
-error_t
-copy_file(const char *src, const char *dest1, const char *dest2)
+// MISRA:2012
+//  > 함수는 단일 종료 지점으로 만들어져야 합니다.
+// => 함수의 결과를 생성하는 여러개의 종료 지점이 있는 경우,
+//    함수를 실행할 때의 결과를 예측하기 어렵습니다.
+
+#if 0
+error_t copy_file(const char *src, const char *dest1, const char *dest2)
 {
   FILE *sfp = fopen(src, "r");
   if (NULL == sfp)
@@ -120,6 +125,54 @@ copy_file(const char *src, const char *dest1, const char *dest2)
   fclose(sfp);
 
   return 0;
+}
+#endif
+
+// goto
+//  2) 오류 처리 루틴에서의 코드 중복을 제거할 수 있습니다.
+//  3) 단일 종료 지점으로의 설계가 가능합니다.
+
+error_t copy_file(const char *src, const char *dest1, const char *dest2)
+{
+  error_t error = 0;
+
+  FILE *sfp = fopen(src, "r");
+  if (NULL == sfp)
+  {
+    error = FILE_OPEN_ERROR;
+    goto err_sfp;
+  }
+
+  FILE *dfp1 = fopen(dest1, "w");
+  if (NULL == dfp1)
+  {
+    error = FILE_OPEN_ERROR;
+    goto err_dfp1;
+  }
+
+  FILE *dfp2 = fopen(dest2, "w");
+  if (NULL == dfp2)
+  {
+    error = FILE_OPEN_ERROR;
+    goto err_dfp2;
+  }
+
+  char ch;
+  while ((ch = fgetc(sfp)) != EOF)
+  {
+    fputc(ch, dfp1);
+    fputc(ch, dfp2);
+  }
+
+  // 가장 최근에 생성된 자원부터 해지해야 합니다.
+  fclose(dfp2);
+err_dfp2:
+  fclose(dfp1);
+err_dfp1:
+  fclose(sfp);
+err_sfp:
+
+  return error;
 }
 
 int main(void)
