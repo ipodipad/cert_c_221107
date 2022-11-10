@@ -9,6 +9,7 @@
     "__config": "c",
     "vector": "cpp",
     "ostream": "cpp",
-    "initializer_list": "cpp"
+    "initializer_list": "cpp",
+    "unistd.h": "c"
   }
 }
