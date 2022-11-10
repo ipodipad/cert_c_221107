@@ -18,6 +18,7 @@ int main(void)
 }
 #endif
 
+#if 0
 void func(int a, int b)
 {
   printf("%d %d\n", a, b);
@@ -36,7 +37,7 @@ int f2(void)
   return 20;
 }
 
-#if 0
+
 int main(void)
 {
   func(f1(), f2()); // 첫번째 인자부터 평가하면, 10, 20
@@ -61,6 +62,7 @@ int main(void)
 }
 #endif
 
+#if 0
 int value(void)
 {
   return 10;
@@ -80,3 +82,96 @@ int main(void)
 
   return 0;
 }
+#endif
+
+#if 0
+struct AAA
+{
+  void (*f)(struct AAA **p);
+};
+
+struct AAA **g(struct AAA **p)
+{
+  return p;
+}
+
+int main(void)
+{
+  struct AAA aaa;
+  struct AAA *p = &aaa;
+
+  /* 문제점 */
+  // > 만약 g 함수의 결과로 p의 값이 변경된다면,
+  //   함수 지정자 p->f가 호출 이전의 p의 값을 사용하는지
+  //   호출 이후의 변경된 p의 값을 사용하는지 표준에서는 지정되지 않았습니다.
+  //  => 미지정 동작
+  p->f(g(&p));
+
+  /* 해결 방법 */
+  struct AAA **r = g(&p);
+  p->f(r);
+}
+#endif
+
+struct AAA
+{
+  void (*f)(struct AAA *p);
+};
+
+void foo(struct AAA *p)
+{
+  printf("foo\n");
+}
+
+void goo(struct AAA *p)
+{
+  printf("goo\n");
+}
+
+struct AAA *g(struct AAA *p)
+{
+  p->f = goo;
+  return p;
+}
+
+int main(void)
+{
+  struct AAA aaa = {foo};
+  aaa.f(NULL); // foo
+
+  struct AAA *r = g(&aaa);
+  aaa.f(r); // goo
+
+  // g(&aaa)의 결과로 f가 goo로 바뀐 호출이 될지,
+  // 바뀌기 이전의 f인 foo가 호출될지 미지정 동작입니다.
+  aaa.f = foo;
+  aaa.f(g(&aaa)); /* 미지정 동작 */
+}
+
+#if 0
+int global = 0;
+int f1(void)
+{
+  global = 10;
+  return 10;
+}
+
+int f2(void)
+{
+  global = 20;
+  return 20;
+}
+
+int main(void)
+{
+  // int r1 = f1() + f2(); /* 미지정 동작 */
+  int r_f1 = f1();
+  int r_f2 = f2();
+  int r1 = r_f1 + r_f2;
+
+  printf("r1: %d\n", r1);
+  printf("global: %d\n", global);
+
+  return 0;
+}
+#endif
