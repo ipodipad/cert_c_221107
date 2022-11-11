@@ -66,3 +66,8 @@ int insert(size_t index, int *list, size_t size, int value)
     return -1;
   }
 }
+
+int main(void)
+{
+  return 0;
+}
