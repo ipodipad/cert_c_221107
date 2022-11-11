@@ -87,5 +87,16 @@ int main(void)
   unsigned long b6 = LONG_MAX;
   PRINT_TYPE(a6 + b6);
 
+  signed char c1;
+  unsigned char c2;
+  char c3;
+
+  PRINT_TYPE(c1);
+  PRINT_TYPE(c2);
+  PRINT_TYPE(c3);
+
+  signed int i1;
+  PRINT_TYPE(i1);
+
   return 0;
 }

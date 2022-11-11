@@ -183,6 +183,7 @@ int main(void)
     printf("si가 더 큽니다.\n");
   }
 #endif
+
   si = 1;
   ui = INT_MAX + 1U;
   // if (si < 0 || (unsigned int)si < ui)
