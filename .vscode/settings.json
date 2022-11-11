@@ -10,6 +10,7 @@
     "vector": "cpp",
     "ostream": "cpp",
     "initializer_list": "cpp",
-    "unistd.h": "c"
+    "unistd.h": "c",
+    "stdint.h": "c"
   }
 }
