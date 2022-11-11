@@ -46,12 +46,22 @@ int main(void)
   }
 
   // 방법 2. 연산의 결과가 래핑이 발생한 것인지 확인합니다.
-  int result = a + b;
+  unsigned int result = a + b;
   if (result < a)
   {
     printf("Wrapping\n");
   }
   else
+  {
+    printf("result: %d\n", result);
+  }
+
+  // 방법 3. GCC 내장 함수
+  a = UINT_MAX;
+  b = 1;
+  int error = __builtin_uadd_overflow(a, b, &result);
+  printf("error: %d\n", error);
+  if (0 == error)
   {
     printf("result: %d\n", result);
   }
