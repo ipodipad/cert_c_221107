@@ -12,6 +12,8 @@
     "initializer_list": "cpp",
     "unistd.h": "c",
     "stdint.h": "c",
-    "string_view": "cpp"
+    "string_view": "cpp",
+    "_uint32_t.h": "c",
+    "_intmax_t.h": "c"
   }
 }

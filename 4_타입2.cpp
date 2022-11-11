@@ -86,4 +86,6 @@ int main(void)
   long long a6 = 20;
   unsigned long b6 = LONG_MAX;
   PRINT_TYPE(a6 + b6);
+
+  return 0;
 }
