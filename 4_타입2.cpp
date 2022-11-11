@@ -1,3 +1,4 @@
+#include <cstdint>
 #include <iostream>
 #include <string_view>
 using namespace std;
@@ -44,6 +45,11 @@ int main(void)
   signed char c4 = 100;
   signed char c5 = 4;
   PRINT_TYPE(c3 * c4 / c5);
+
+  u_int16_t x = 45000;
+  u_int16_t y = 50000;
+  PRINT_TYPE(x * y);
+  PRINT_TYPE((long)x * y);
 
   return 0;
 }
