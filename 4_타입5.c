@@ -162,7 +162,7 @@ int main(void)
 
   if (b == 0 || (a == INT_MIN && b == -1))
   {
-    printf("Error!\n");
+    printf("Error!\n"); /* 미정의 동작 */
   }
   else
   {
