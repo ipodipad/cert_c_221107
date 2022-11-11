@@ -71,6 +71,7 @@ int main(void)
 }
 #endif
 
+#if 0
 int main(void)
 {
   int a;
@@ -87,7 +88,7 @@ int main(void)
     {
       if (b != 0 && a > (INT_MAX / b)) // 양수*양수
       {
-        printf("Overflow\n");
+        printf("Overflow1\n");
         is_overflow = 1;
       }
     }
@@ -95,7 +96,7 @@ int main(void)
     {
       if (a != 0 && b < (INT_MIN / a)) // 양수*음수
       {
-        printf("Overflow\n");
+        printf("Overflow2\n");
         is_overflow = 1;
       }
     }
@@ -106,7 +107,7 @@ int main(void)
     {
       if (b != 0 && a < (INT_MIN / b))
       {
-        printf("Overflow\n");
+        printf("Overflow3\n");
         is_overflow = 1;
       }
     }
@@ -114,7 +115,7 @@ int main(void)
     {
       if (a != 0 && b < (INT_MAX / a))
       {
-        printf("Overflow\n");
+        printf("Overflow4\n");
         is_overflow = 1;
       }
     }
@@ -123,6 +124,49 @@ int main(void)
   if (0 == is_overflow)
   {
     result = a * b;
+    printf("result: %d\n", result);
+  }
+
+  return 0;
+}
+#endif
+
+#if 0
+int main(void)
+{
+  // 부호 있는 1바이트 정수: -128 ~ 127
+  int a;
+  int b;
+  int result;
+
+  a = INT_MIN;
+  b = -1;
+
+  result = a / b;
+  printf("result: %d\n", result);
+
+  return 0;
+}
+#endif
+
+int main(void)
+{
+  // 부호 있는 1바이트 정수:   -128 ~   127
+  // 부호 있는 2바이트 정수: -32768 ~ 32767
+  int a;
+  int b;
+  int result;
+
+  a = INT_MIN;
+  b = -1;
+
+  if (b == 0 || (a == INT_MIN && b == -1))
+  {
+    printf("Error!\n");
+  }
+  else
+  {
+    result = a / b;
     printf("result: %d\n", result);
   }
 
