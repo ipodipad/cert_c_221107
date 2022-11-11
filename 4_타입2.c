@@ -1,4 +1,6 @@
 // 4_타입2.c
+#include <limits.h>
+#include <stdint.h>
 #include <stdio.h>
 
 // 1. 정수 변환 규칙에 대해서 이해하는 것이 중요합니다.
@@ -9,8 +11,50 @@
 
 // 2. 잘못된 캐스팅이 수행될 경우, 데이터가 손실되거나 잘못 해석될 수 있습니다.
 
+// 3. 오버플로우
+//  => 부호 있는 정수가 자신이 표현할 수 있는
+//     범위를 벗어나는 연산을 수행하였을 때
+//  => 미정의 동작
+
+// 4. 정수 프로모션(Promotion, 상승 변환)
+// > int 보다 작은 정수 타입은 연산이 수행될 때, int 또는 unsigned int로 변환됩니다.
+#if 0
 int main(void)
 {
+  signed char c1 = 100;
+  signed char c2 = 100;
+  printf("%d\n", SCHAR_MAX);
 
+  int n = c1 + c2;
+  printf("%d\n", n);
+
+  short s1 = SHRT_MAX;
+  short s2 = 1;
+  printf("%d\n", SHRT_MAX);
+
+  n = s1 + s2;
+  printf("%d\n", n);
+  unsigned short s3 = SHRT_MAX;
+  unsigned short s4 = SHRT_MAX;
+
+  signed char c3 = 100;
+  signed char c4 = 100;
+  signed char c5 = 4;
+
+  return 0;
+}
+#endif
+
+int main(void)
+{
+  uint8_t port = 0x5a;
+  uint8_t result = (~port) >> 4;
+
+  //  0x5a: 0101 1010
+  // ~0x5a: 1010 0101
+  //   >>4: 0000 1010
+  //  => 0x0a
+
+  printf("%x\n", result);
   return 0;
 }

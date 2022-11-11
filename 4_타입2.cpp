@@ -28,8 +28,22 @@ constexpr auto type_name()
 
 int main(void)
 {
-  int a;
-  PRINT_TYPE(a);
+  signed char c1 = 100;
+  signed char c2 = 100;
+  PRINT_TYPE(c1 + c2);
+
+  short s1 = SHRT_MAX;
+  short s2 = 1;
+  PRINT_TYPE(s1 + s2);
+
+  unsigned short s3 = SHRT_MAX;
+  unsigned short s4 = SHRT_MAX;
+  PRINT_TYPE(s3 + s4);
+
+  signed char c3 = 100;
+  signed char c4 = 100;
+  signed char c5 = 4;
+  PRINT_TYPE(c3 * c4 / c5);
 
   return 0;
 }
