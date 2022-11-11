@@ -141,6 +141,7 @@ int main(void)
   unsigned int b5 = INT_MAX;
   // a5 + b5 -> long long
 
+  // long, long long => 8바이트
   long long a6 = 20;
   unsigned long b6 = LONG_MAX;
   // 부호 있는 정수 타입의 피 연산자가 부호 없는 타입의 모든 값을 표현할 수 없는 경우
