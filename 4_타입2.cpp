@@ -57,6 +57,7 @@ int main(void)
 }
 #endif
 
+#if 0
 int main(void)
 {
   int a = 100;
@@ -99,4 +100,33 @@ int main(void)
   PRINT_TYPE(i1);
 
   return 0;
+}
+#endif
+
+// 4_타입4.c
+
+struct bits
+{
+  signed int a : 8;
+  signed int b : 8;
+
+  unsigned int c : 8;
+  unsigned int d : 8;
+
+  unsigned int e1 : 31;
+  unsigned int f1 : 31;
+
+  unsigned int e2 : 32;
+  unsigned int f2 : 32;
+};
+
+int main(void)
+{
+  struct bits b = {10, 20, 30, 40};
+  PRINT_TYPE(b.a + b.b);
+
+  PRINT_TYPE(b.c + b.d);
+
+  PRINT_TYPE(b.e1 + b.f1); // int
+  PRINT_TYPE(b.e2 + b.f2); // unsigned int
 }
