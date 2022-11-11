@@ -23,6 +23,7 @@ int main(void)
 }
 #endif
 
+#if 0
 int main(void)
 {
   int a;
@@ -46,6 +47,82 @@ int main(void)
   else
   {
     result = a + b;
+    printf("result: %d\n", result);
+  }
+
+  return 0;
+}
+#endif
+
+#if 0
+int main(void)
+{
+  int a;
+  int b;
+  int result;
+
+  a = INT_MAX;
+  b = 2;
+
+  result = a * b;
+  printf("result: %d\n", result);
+
+  return 0;
+}
+#endif
+
+int main(void)
+{
+  int a;
+  int b;
+  int result;
+
+  a = INT_MIN;
+  b = -2;
+
+  int is_overflow = 0;
+  if (a > 0) // a가 양수
+  {
+    if (b > 0) // b가 양수
+    {
+      if (b != 0 && a > (INT_MAX / b)) // 양수*양수
+      {
+        printf("Overflow\n");
+        is_overflow = 1;
+      }
+    }
+    else // b가 음수
+    {
+      if (a != 0 && b < (INT_MIN / a)) // 양수*음수
+      {
+        printf("Overflow\n");
+        is_overflow = 1;
+      }
+    }
+  }
+  else // a가 음수
+  {
+    if (b > 0)
+    {
+      if (b != 0 && a < (INT_MIN / b))
+      {
+        printf("Overflow\n");
+        is_overflow = 1;
+      }
+    }
+    else
+    {
+      if (a != 0 && b < (INT_MAX / a))
+      {
+        printf("Overflow\n");
+        is_overflow = 1;
+      }
+    }
+  }
+
+  if (0 == is_overflow)
+  {
+    result = a * b;
     printf("result: %d\n", result);
   }
 
