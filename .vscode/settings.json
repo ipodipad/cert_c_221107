@@ -11,6 +11,7 @@
     "ostream": "cpp",
     "initializer_list": "cpp",
     "unistd.h": "c",
-    "stdint.h": "c"
+    "stdint.h": "c",
+    "string_view": "cpp"
   }
 }
