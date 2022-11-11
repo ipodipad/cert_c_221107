@@ -149,6 +149,7 @@ int main(void)
 }
 #endif
 
+#if 0
 int main(void)
 {
   // 부호 있는 1바이트 정수:   -128 ~   127
@@ -167,6 +168,56 @@ int main(void)
   else
   {
     result = a / b;
+    printf("result: %d\n", result);
+  }
+
+  return 0;
+}
+#endif
+
+// GNU / Clang 컴파일러를 사용할 경우,
+// 컴파일러 내장 함수를 이용해서 연산의 오버플로어 여부를 감지하고 연산을 수행할 수 있습니다.
+int main(void)
+{
+  int a;
+  int b;
+  int result;
+  int error;
+
+  a = INT_MAX;
+  b = 1;
+  error = __builtin_add_overflow(a, b, &result);
+  printf("error: %d\n", error);
+  if (error == 1)
+  {
+    printf("Overflow\n");
+  }
+  else
+  {
+    printf("result: %d\n", result);
+  }
+
+  a = INT_MIN;
+  b = 1;
+  error = __builtin_sub_overflow(a, b, &result);
+  if (error == 1)
+  {
+    printf("Overflow\n");
+  }
+  else
+  {
+    printf("result: %d\n", result);
+  }
+
+  a = INT_MAX;
+  b = 2;
+  error = __builtin_mul_overflow(a, b, &result);
+  if (error == 1)
+  {
+    printf("Overflow\n");
+  }
+  else
+  {
     printf("result: %d\n", result);
   }
 
