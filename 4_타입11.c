@@ -10,7 +10,7 @@
 // 명시하고 있지만, 부동 소수점을 구현한 플랫폼자체에서 제대로 구현하고 있지 않습니다.
 // => 특정 부동 소수점 표현 방식을 보장할 수 없습니다.
 
-#if 0
+#if 1
 int main(void)
 {
   printf("%lu\n", sizeof(float));
@@ -22,6 +22,14 @@ int main(void)
   long double ld = 3.14L; // => %Lf
 
   printf("%f %lf %Lf\n", f, d, ld);
+
+  float a = 1.0F / 3.0F;
+  double b = 1.0 / 3.0;
+  long double c = 1.0L / 3.0L;
+
+  printf("%.60f\n", a);
+  printf("%.60lf\n", b);
+  printf("%.60Lf\n", c);
 
   return 0;
 }
@@ -43,6 +51,7 @@ int main(void)
 }
 #endif
 
+#if 0
 #include <inttypes.h>
 #include <stdint.h>
 
@@ -62,3 +71,4 @@ int main(void)
 
   return 0;
 }
+#endif
