@@ -25,7 +25,6 @@ int main(void)
   */
   /* 해결 방법 */
 
-  
   if (is_user_login())
   {
     if (is_guest())
@@ -56,6 +55,7 @@ int is_guest(void) { return 1; }
 int main(void)
 {
 #if 0
+  /* NO */
   int level = ADMINISTRATOR;
   if (is_user_login())
   {
@@ -67,6 +67,7 @@ int main(void)
   }
 #endif
 
+  /* 해결 방법 */
   int level;
   if (is_user_login())
   {
