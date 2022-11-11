@@ -27,6 +27,8 @@ constexpr auto type_name()
 
 #define PRINT_TYPE(x) cout << type_name<decltype(x)>() << endl
 
+#if 0
+// 프로모션
 int main(void)
 {
   signed char c1 = 100;
@@ -52,4 +54,36 @@ int main(void)
   PRINT_TYPE((long)x * y);
 
   return 0;
+}
+#endif
+
+int main(void)
+{
+  int a = 100;
+  int b = INT_MAX;
+  PRINT_TYPE(a + b);
+
+  long c = 100;
+  long d = LONG_MAX;
+  PRINT_TYPE(c + d);
+
+  int a2 = INT_MAX;
+  long long b2 = INT_MAX;
+  PRINT_TYPE(a2 + b2);
+
+  int a3 = INT_MAX;
+  unsigned int b3 = 10;
+  PRINT_TYPE(a3 + b3);
+
+  int a4 = INT_MAX;
+  unsigned short b4 = 10;
+  PRINT_TYPE(a4 + b4);
+
+  long long a5 = 10;
+  unsigned int b5 = INT_MAX;
+  PRINT_TYPE(a5 + b5);
+
+  long long a6 = 20;
+  unsigned long b6 = LONG_MAX;
+  PRINT_TYPE(a6 + b6);
 }
