@@ -37,9 +37,9 @@ int main(void)
   struct bits b = {10, 20, 30, 40};
   // b.a + b.b => int
   // b.c + b.d => int
-
   // b.e1 + b.f1 => int
-  // b.e2 + b.f2 =>
+
+  // b.e2 + b.f2 => unsigned int
 
   return 0;
 }
