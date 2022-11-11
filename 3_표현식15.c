@@ -3,7 +3,7 @@
 
 // goto 사용하면 안됩니다.
 // > goto를 제한없이 사용하면, 이해하기 어려운 프로그램이 됩니다.
-//   goto를 허용되는 예외를 제외하고, goto문을 사용하면 안됩니다.
+//   goto를 허용되는 예외상황을 제외하고, goto문을 사용하면 안됩니다.
 #if 0
 int main(void)
 {
@@ -77,6 +77,31 @@ out:
 }
 #endif
 
+#if 0
+int main(void)
+{
+  int flag1 = 0;
+  int flag2 = 0;
+
+  // 하나의 반복문 안에 1개 이상의 break 또는 goto문을 사용하면 안됩니다.
+  for (int i = 0; i < 10; i++)
+  {
+    if (flag1 == 1)
+    {
+      break;
+    }
+
+    //...
+
+    if (flag2 == 1)
+    {
+      break;
+    }
+  }
+}
+#endif
+
+#if 1
 typedef int error_t;
 
 enum
@@ -199,3 +224,4 @@ int main(void)
 
   return 0;
 }
+#endif
