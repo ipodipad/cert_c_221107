@@ -114,6 +114,7 @@ int main(void)
 //       경우, 부호 있는 정수 타입의 피연산자는 동일 타입의 부호 없는 타입으로
 //       두 피연산자 모두 변환됩니다.
 
+#if 0
 int main(void)
 {
   int a = 100;
@@ -147,6 +148,52 @@ int main(void)
   // 부호 있는 정수 타입의 피 연산자가 부호 없는 타입의 모든 값을 표현할 수 없는 경우
   // 부호 있는 정수 타입의 피연산자의 동일 타입의 부호 없는 타입으로 두 피연산자
   // 모두 변경됩니다.
+
+  return 0;
+}
+#endif
+
+int main(void)
+{
+  int si = -1;
+  unsigned int ui = 1;
+
+  /* 잘못된 코드*/
+#if 0
+  if (si < ui)
+  {
+    printf("si가 더 작습니다.\n");
+  }
+  else
+  {
+    printf("si가 더 큽니다.\n");
+  }
+#endif
+
+#if 0
+  /* 잘못된 코드 */
+  si = 1;
+  ui = INT_MAX + 1U;
+  if (si < (int)ui) /* 미정의 동작 */
+  {
+    printf("si가 더 작습니다.\n");
+  }
+  else
+  {
+    printf("si가 더 큽니다.\n");
+  }
+#endif
+  si = 1;
+  ui = INT_MAX + 1U;
+  // if (si < 0 || (unsigned int)si < ui)
+  if (si < 0 || si < ui)
+  {
+    printf("si가 더 작습니다.\n");
+  }
+  else
+  {
+    printf("si가 더 큽니다.\n");
+  }
 
   return 0;
 }
