@@ -67,9 +67,9 @@ int main(void)
 
 //  strtol 계열의 함수를 사용해야 합니다.
 //   - strtol
-//   - strtoll
+//   - strtoll - C99
 //   - strtoul
-//   - strtoull
+//   - strtoull - C99
 
 int main(void)
 {
