@@ -177,6 +177,7 @@ int main(void)
 
 // GNU / Clang 컴파일러를 사용할 경우,
 // 컴파일러 내장 함수를 이용해서 연산의 오버플로어 여부를 감지하고 연산을 수행할 수 있습니다.
+//  "Arithmetic Overflow Checking Built-in Functions"
 int main(void)
 {
   int a;
