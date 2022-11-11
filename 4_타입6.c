@@ -27,6 +27,7 @@ int main(void)
 }
 #endif
 
+#if 0
 int main(void)
 {
   unsigned int a;
@@ -60,6 +61,74 @@ int main(void)
   a = UINT_MAX;
   b = 1;
   int error = __builtin_uadd_overflow(a, b, &result);
+  printf("error: %d\n", error);
+  if (0 == error)
+  {
+    printf("result: %d\n", result);
+  }
+
+  return 0;
+}
+#endif
+
+#if 0
+int main(void)
+{
+  unsigned int a;
+  unsigned int b;
+
+  a = 100;
+  b = 200;
+
+  if (a < b)
+  {
+    printf("Wrapping\n");
+  }
+  else
+  {
+    printf("%u\n", a - b);
+  }
+
+  unsigned int diff = a - b;
+  if (diff > a)
+  {
+    printf("Wrapping\n");
+  }
+  else
+  {
+    printf("%u\n", diff);
+  }
+
+  int error = __builtin_usub_overflow(a, b, &diff);
+  printf("error: %d\n", error);
+  if (0 == error)
+  {
+    printf("result: %d\n", diff);
+  }
+
+  return 0;
+}
+#endif
+
+int main(void)
+{
+  unsigned int a;
+  unsigned int b;
+
+  a = UINT_MAX;
+  b = 2;
+
+  if (a > UINT_MAX / b)
+  {
+    printf("Wrapping\n");
+  }
+  else
+  {
+    printf("%u\n", a / b);
+  }
+
+  unsigned int result;
+  int error = __builtin_umul_overflow(a, b, &result);
   printf("error: %d\n", error);
   if (0 == error)
   {
