@@ -37,7 +37,7 @@ int main(void)
   printf("%d %ld %lld\n", i, l, ll);
 
   size_t s = 100;
-  printf("%lu\n", s); // size_t
+  printf("%zu\n", s); // size_t
 
   return 0;
 }
